@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35118.90
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CityController", "CityController\CityController.csproj", "{98CFFAAA-E3AE-4A84-B83A-2A090813A361}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CS2Shared", "..\CS2Shared\CS2Shared\CS2Shared.shproj", "{40793EA5-CC36-4B43-AAF2-B8CA3CBEF13D}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CS2Shared.Patch", "..\CS2Shared\CS2Shared.Patch\CS2Shared.Patch.shproj", "{FE75893F-4D5B-4381-84C0-DA65BE049D12}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{98CFFAAA-E3AE-4A84-B83A-2A090813A361}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98CFFAAA-E3AE-4A84-B83A-2A090813A361}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98CFFAAA-E3AE-4A84-B83A-2A090813A361}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98CFFAAA-E3AE-4A84-B83A-2A090813A361}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7FE304F3-C3CE-4D0B-A5E3-A553A5DF8D93}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\CS2Shared\CS2Shared\CS2Shared.projitems*{40793ea5-cc36-4b43-aaf2-b8ca3cbef13d}*SharedItemsImports = 13
+		..\CS2Shared\CS2Shared.Patch\CS2Shared.Patch.projitems*{98cffaaa-e3ae-4a84-b83a-2a090813a361}*SharedItemsImports = 5
+		..\CS2Shared\CS2Shared\CS2Shared.projitems*{98cffaaa-e3ae-4a84-b83a-2a090813a361}*SharedItemsImports = 5
+		..\CS2Shared\CS2Shared.Patch\CS2Shared.Patch.projitems*{fe75893f-4d5b-4381-84c0-da65be049d12}*SharedItemsImports = 13
+	EndGlobalSection
+EndGlobal
