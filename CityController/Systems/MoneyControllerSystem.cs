@@ -1,9 +1,11 @@
+using Colossal.Serialization.Entities;
 using CS2Shared.Common;
 using Game;
 using Game.City;
 using Game.Input;
 using Game.SceneFlow;
 using Game.Simulation;
+using Unity.Entities;
 
 namespace CityController.Systems;
 
@@ -22,36 +24,52 @@ public partial class MoneyControllerSystem : GameSystemExtensionBase {
         cityConfigurationSystem.overrideUnlimitedMoney = false;
         Logger.Info($"Set CityConfigurationSystem to Limited Money");
         PlayerMoney componentData = EntityManager.GetComponentData<PlayerMoney>(citySystem.City);
-        if (componentData.m_Unlimited) {
-            componentData.m_Unlimited = false;
-            EntityManager.SetComponentData(citySystem.City, componentData);
-            Logger.Info($"Set PlayerMoney to Limited Money {componentData.m_Unlimited}{componentData.money}");
-        }
+        componentData.m_Unlimited = false;
+        ModifyMoney(ModifyMoneyType.AutoAdd, 1);
+        ModifyMoney(ModifyMoneyType.AutoSubtract, 1);
+        EntityManager.SetComponentData(citySystem.City, componentData);
+        Logger.Info($"Set PlayerMoney to Limited Money {componentData.m_Unlimited}{componentData.money}");
     }
 
-    public void OnSubtractMoney() => ModifyMoney(ModifyMoneyType.Subtract, Setting.Instance.ManualMoneyAmount);
+    public void OnSubtractMoney() => ModifyMoney(ModifyMoneyType.ManualSubtract, Setting.Instance.ManualMoneyAmount);
 
-    public void OnAddMoney() => ModifyMoney(ModifyMoneyType.Add, Setting.Instance.ManualMoneyAmount);
+    public void OnAddMoney() => ModifyMoney(ModifyMoneyType.ManualAdd, Setting.Instance.ManualMoneyAmount);
 
-    private void ModifyMoney(ModifyMoneyType modifyMoneyType, int money, bool auto = false) {
+    private void ModifyMoney(ModifyMoneyType modifyMoneyType, int money) {
         if (GameManager.instance.gameMode != GameMode.Game || citySystem is null || modifyMoneyType == ModifyMoneyType.None)
             return;
         PlayerMoney componentData = EntityManager.GetComponentData<PlayerMoney>(citySystem.City);
-        if (modifyMoneyType == ModifyMoneyType.Add) {
+        if (modifyMoneyType == ModifyMoneyType.AutoAdd || modifyMoneyType == ModifyMoneyType.ManualAdd) {
             componentData.Add(money);
         }
-        else if (modifyMoneyType == ModifyMoneyType.Subtract) {
+        else if (modifyMoneyType == ModifyMoneyType.AutoSubtract || modifyMoneyType == ModifyMoneyType.ManualSubtract) {
             componentData.Subtract(money);
         }
-        var prefix = auto ? "Auto " : "";
-        Logger.Info($"{prefix}{modifyMoneyType} money {money} to {componentData.money} ");
+        Logger.Info($"{modifyMoneyType} money {money} to {componentData.money} ");
         EntityManager.SetComponentData(citySystem.City, componentData);
     }
 
     public enum ModifyMoneyType {
-        Add,
-        Subtract,
+        AutoAdd,
+        ManualAdd,
+        AutoSubtract,
+        ManualSubtract,
         None
+    }
+
+    protected override void OnGameLoaded(Context serializationContext) {
+        base.OnGameLoaded(serializationContext);
+        if ((serializationContext.purpose == Purpose.NewGame || serializationContext.purpose == Purpose.LoadGame) && Setting.Instance.InitialMoney != 0) {
+            var componentData = EntityManager.GetComponentData<PlayerMoney>(citySystem.City);
+            if (!componentData.m_Unlimited) {
+                var raw = componentData.money;
+                Logger.Info($"Setting initial money, default money: {raw}");
+                ModifyMoney(ModifyMoneyType.AutoSubtract, raw);
+                ModifyMoney(ModifyMoneyType.AutoAdd, Setting.Instance.InitialMoney);
+                Setting.Instance.ResetInitialMoney();
+                Logger.Info($"Set initial money completed, money: {componentData.money}");
+            }
+        }
     }
 
     protected override void OnCreate() {
@@ -68,7 +86,7 @@ public partial class MoneyControllerSystem : GameSystemExtensionBase {
             PlayerMoney componentData = EntityManager.GetComponentData<PlayerMoney>(citySystem.City);
             if (componentData.money < Setting.Instance.AutomaticAddMoneyThreshold) {
                 Logger.Info($"{componentData.money} < {Setting.Instance.AutomaticAddMoneyThreshold}, automatically add money");
-                ModifyMoney(ModifyMoneyType.Add, Setting.Instance.AutomaticAddMoneyAmount, true);
+                ModifyMoney(ModifyMoneyType.AutoAdd, Setting.Instance.AutomaticAddMoneyAmount);
             }
         }
         if (IsInGame && addMoneyAction.WasPerformedThisFrame()) {

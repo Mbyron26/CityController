@@ -119,13 +119,50 @@ public class Setting : ModSettingBase {
     }
     #endregion
 
+    [SettingsUIDropdown(typeof(Setting), nameof(GetInitialMoneyItems))]
+    [SettingsUISection(General, Money)]
+    [SettingsUIDisableByCondition(typeof(Setting), nameof(IsInGame))]
+    public int InitialMoney { get; set; }
+
+    public DropdownItem<int>[] GetInitialMoneyItems() {
+        var items = new List<DropdownItem<int>> {
+            new () {
+                value = 0,
+                displayName = GetOptionLocaleID("GameDefault"),
+            },
+            new () {
+                value = 100000,
+                displayName = 100000.ToString("N0"),
+            },
+            new () {
+                value = 500000,
+                displayName = 500000.ToString("N0"),
+            },
+            new () {
+                value = 5000000,
+                displayName = 5000000.ToString("N0"),
+            },
+            new () {
+                value = 10000000,
+                displayName = 10000000.ToString("N0"),
+            },
+            new () {
+                value = 100000000,
+                displayName = 100000000.ToString("N0"),
+            },
+        };
+        return items.ToArray();
+    }
+
+    public void ResetInitialMoney() => InitialMoney = 0;
+
     [SettingsUIButton]
     [SettingsUIConfirmation]
     [SettingsUISection(General, Money)]
     [SettingsUIDisableByCondition(typeof(Setting), nameof(NotInGame))]
     public bool MoneyTransfer {
         set {
-            if (NotInGame())
+            if (NotInGame)
                 return;
             World.DefaultGameObjectInjectionWorld?.GetOrCreateSystemManaged<MoneyControllerSystem>()?.SetUnlimitedMoneyToLimitedMoney();
         }
@@ -133,7 +170,7 @@ public class Setting : ModSettingBase {
 
     #region CustomMilestone
     [SettingsUISection(General, Milestone)]
-    [SettingsUIDisableByCondition(typeof(Setting), nameof(InGame))]
+    [SettingsUIDisableByCondition(typeof(Setting), nameof(IsInGame))]
     public bool CustomMilestone { get; set; }
     #endregion
 
@@ -143,7 +180,7 @@ public class Setting : ModSettingBase {
     [SettingsUIDisableByCondition(typeof(Setting), nameof(GetMilestoneLevelStatus))]
     public int MilestoneLevel { get; set; }
 
-    private bool GetMilestoneLevelStatus() => InGame() || !CustomMilestone;
+    private bool GetMilestoneLevelStatus() => InGame || !CustomMilestone;
 
     private DropdownItem<int>[] GetMilestoneLevelItems() {
         var items = new List<DropdownItem<int>>();
@@ -157,8 +194,6 @@ public class Setting : ModSettingBase {
     }
     #endregion
 
-    private bool InGame() => !NotInGame();
-    private bool NotInGame() => Mode != Game.GameMode.Game;
 
     [SettingsUIKeyboardBinding(BindingKeyboard.M, AddMoneyAction, ctrl: true, shift: true)]
     [SettingsUISection(KeyBindings, Money)]
@@ -174,6 +209,7 @@ public class Setting : ModSettingBase {
         AutomaticAddMoney = false;
         AutomaticAddMoneyThreshold = 1000000;
         AutomaticAddMoneyAmount = 1000000;
+        InitialMoney = 0;
         CustomMilestone = false;
         MilestoneLevel = 19;
     }
@@ -231,6 +267,9 @@ public class Setting : ModSettingBase {
             { GetOptionLabelLocaleID(nameof(SubtractMoneyKeyboardBinding)), "Subtract Money" },
             { GetOptionDescLocaleID(nameof(SubtractMoneyKeyboardBinding)), $"Hotkeys for subtracting money within the game." },
             { GetBindingKeyLocaleID(SubtractMoneyAction), "Subtract Money" },
+            { GetOptionLabelLocaleID(nameof(InitialMoney)), "Initial Money" },
+            { GetOptionDescLocaleID(nameof(InitialMoney)), $"Set the game initial money. This option is valid for New/Loaded games and only takes effect once. Note that this option can only be changed when not in game." },
+            { GetOptionLocaleID("GameDefault"), "Game Default" },
         });
         AddLocaleSource(Milestones.ToDictionary(milestone => GetOptionLocaleID(milestone), milestone => milestone));
     }

@@ -1,43 +1,45 @@
 ﻿<Publish>
-	<ModId Value="" />
+	<ModId Value="89495" />
 	<DisplayName Value="City Controller" />
 	<ShortDescription Value="Provides more options to control various city settings." />
 	<LongDescription>
-		# **City Controller**
+# City Controller
 
-		## All functions of this mod are in the development stage.
+## All functions of this mod are in the development stage.
 
-		### Why does this mod contain so few features? Why release at all?
-		Many of the features of this mod were completed last year,	unfortunately, due to my work, the development work was put on hold. This mod original contained many functions, but some mod developers have provided corresponding function mods, so this mod was forced to delete a considerable part of its functions.
-		### Why release at all?
-		Because many players still want this mod to be released.(＠_＠;)
+### Why does this mod contain so few features?
+Many of the features of this mod were completed last year,	unfortunately, due to my work, the development work was put on hold. This mod original contained many functions, but some mod developers have provided corresponding function mods, so this mod was forced to delete a considerable part of its functions.
 
-		### Features
-		- Automatic add money, manual add/subtract money, unlimited money and limited money conversion.
-		- Custom milestone.
+### Why release at all?
+Because many players still want this mod to be released.
 
-		### Plans
-		- Notification icon displayed/hidden.
-		- Custom unlock.
-		- City service control, fire, death, etc.
-		- Any interesting features?
+### Features
+- Automatic add money, manual add/subtract money, unlimited money and limited money conversion.
+- Custom milestone.
 
-		### Translation
-		This mod provides the same custom mod language as Cities Skylines 1, but the translation needs to be improved by volunteers.
+### Plans
+- Notification icon displayed/hidden.
+- Custom unlock.
+- City service control, fire, death, etc.
+- Any interesting features?
 
+### Translation
+This mod provides the same custom mod language as Cities Skylines 1, but the translation needs to be improved by volunteers.
 	</LongDescription>
 	<Thumbnail Value="Properties/Thumbnail.png" />
 	<Screenshot Value="" />
 	<Tag Value="Code Mod" />
-	<ForumLink Value="" />
-	<ModVersion Value="0.1" />
+	<ForumLink Value="https://forum.paradoxplaza.com/forum/threads/city-controller.1702575/" />
+	<ModVersion Value="0.1.2" />
 	<GameVersion Value="1.1.*" />
 	<Dependency Id="" />
 	<ChangeLog>
-		## v0.1.0
-		Initial release.
+## 0.1.2
+- Fixed the bug that failed to convert unlimited money to limited money.
+- Updated translation.
+- Added initial money setting.
 	</ChangeLog>
-	<ExternalLink Type="github" Url="https://discord.gg/ZxbyzmvGxG" />
+	<ExternalLink Type="github" Url="https://github.com/Mbyron26/CityController" />
 	<ExternalLink Type="discord" Url="https://discord.gg/ZxbyzmvGxG" />
 	<ExternalLink Type="crowdin" Url="https://crowdin.com/project/city-controller" />
 </Publish>
