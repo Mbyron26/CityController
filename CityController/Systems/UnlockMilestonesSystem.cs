@@ -1,4 +1,5 @@
-﻿using Colossal.Serialization.Entities;
+﻿using CityController.Settings;
+using Colossal.Serialization.Entities;
 using CS2Shared.Common;
 using Game.City;
 using Game.Common;
@@ -10,7 +11,7 @@ using Unity.Mathematics;
 
 namespace CityController.Systems;
 
-public partial class UnlockMilestonesSystem : GameSystemExtensionBase {
+public partial class UnlockMilestonesSystem : GameSystemBaseExtension {
     private EntityArchetype unlockEventArchetype;
     private EntityQuery milestoneLevelGroup;
     private EntityQuery milestoneGroup;
@@ -32,7 +33,7 @@ public partial class UnlockMilestonesSystem : GameSystemExtensionBase {
 
     protected override void OnGameLoaded(Context serializationContext) {
         base.OnGameLoaded(serializationContext);
-        if (IsInGame)
+        if (InGame)
             UnlockMilestone();
     }
 

@@ -7,7 +7,7 @@
 		<LangVersion>10</LangVersion>
 		<Product>City Controller</Product>
 		<Authors>Mbyron26</Authors>
-		<Version>0.1.2</Version>
+		<Version>0.2.0</Version>
 		<Copyright>Copyright © 2024 Mbyron26</Copyright>
 
 		<!--The file where mod information which is required for publishing mod on PDX mods are stored-->
@@ -20,12 +20,12 @@
 	<Import Project="$([System.Environment]::GetEnvironmentVariable('CSII_TOOLPATH', 'EnvironmentVariableTarget.User'))\Mod.targets" />
 
 	<ItemGroup>
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<Reference Include="Colossal.AssetPipeline">
 		  <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Cities Skylines II\Cities2_Data\Managed\Colossal.AssetPipeline.dll</HintPath>
+		  <Private>False</Private>
+		</Reference>
+		<Reference Include="Colossal.Collections">
+		  <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Cities Skylines II\Cities2_Data\Managed\Colossal.Collections.dll</HintPath>
 		  <Private>False</Private>
 		</Reference>
 		<Reference Include="Colossal.PSI.Common">
@@ -90,11 +90,27 @@
 		<None Include="$(ModTargetsFile)" Link="Properties\Mod.targets" />
 	</ItemGroup>
 
-
 	<ItemGroup>
 		<None Update="Localization\**\*">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="UI\src\mods\InfoPanel\" />
+	  <Folder Include="UI\src\mods\Divider\" />
+	  <Folder Include="UI\src\mods\ControlPanelViews\" />
+	</ItemGroup>
+
+	<Target Name="CopySvgFiles" AfterTargets="DeployWIP">
+		<ItemGroup>
+			<SvgFiles Include=".\UI\images\*.*" />
+		</ItemGroup>
+		<Copy SourceFiles="@(SvgFiles)" DestinationFiles="@(SvgFiles->'$(DeployDir)\images\%(RecursiveDir)%(Filename)%(Extension)')" />
+	</Target>
+
+	<Target Name="BuildUI" AfterTargets="AfterBuild">
+		<Exec Command="npm run build" WorkingDirectory="$(ProjectDir)/UI" />
+	</Target>
 
 </Project>

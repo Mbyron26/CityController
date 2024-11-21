@@ -1,0 +1,13 @@
+.infoPanel {
+    padding: 10rem;
+    background-color: rgba(0, 0, 0, 0.15);
+    /*    border-top-left-radius: var(--panelRadius);
+    border-top-right-radius: var(--panelRadius);
+    border-bottom-left-radius: var(--panelRadius);
+    border-bottom-right-radius: var(--panelRadius);*/
+}
+
+.infoPanelTitle {
+    font-size: var(--fontSizeS);
+    margin-bottom: 10rem;
+}

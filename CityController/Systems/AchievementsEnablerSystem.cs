@@ -1,11 +1,12 @@
-﻿using Colossal.PSI.Common;
+﻿using CityController.Settings;
+using Colossal.PSI.Common;
 using Colossal.Serialization.Entities;
 using CS2Shared.Common;
 using Game;
 
 namespace CityController.Systems;
 
-public partial class AchievementsControllerSystem : GameSystemExtensionBase {
+public partial class AchievementsControllerSystem : GameSystemBaseExtension {
     protected override void OnGamePreload(Purpose purpose, GameMode mode) {
         base.OnGamePreload(purpose, mode);
         Logger.Info($"AchievementsControllerSystem OnGamePreload, game mode: {mode}, game/mod achievements status: {PlatformManager.instance.achievementsEnabled} {Setting.Instance.AchievementsEnabled} ");

@@ -25,19 +25,21 @@ Because many players still want this mod to be released.
 
 ### Translation
 This mod provides the same custom mod language as Cities Skylines 1, but the translation needs to be improved by volunteers.
+
+### Feedback
+Give feedback through discord or via GitHub.
 	</LongDescription>
 	<Thumbnail Value="Properties/Thumbnail.png" />
-	<Screenshot Value="" />
+	<Screenshot Value="Properties/Previews/NotificationPanel.jpg" />
 	<Tag Value="Code Mod" />
 	<ForumLink Value="https://forum.paradoxplaza.com/forum/threads/city-controller.1702575/" />
-	<ModVersion Value="0.1.2" />
+	<ModVersion Value="0.2.0" />
 	<GameVersion Value="1.1.*" />
-	<Dependency Id="" />
+	<Dependency Id="74417" DisplayName="Unified Icon Library" Version="1.0.10" />
 	<ChangeLog>
-## 0.1.2
-- Fixed the bug that failed to convert unlimited money to limited money.
-- Updated translation.
-- Added initial money setting.
+## [0.2.0]
+- Added electricity, water pipe, building, traffic notification icon toggle function.
+- Code optimization.
 	</ChangeLog>
 	<ExternalLink Type="github" Url="https://github.com/Mbyron26/CityController" />
 	<ExternalLink Type="discord" Url="https://discord.gg/ZxbyzmvGxG" />

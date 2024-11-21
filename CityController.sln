@@ -9,6 +9,8 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CS2Shared", "..\CS2Shared\C
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CS2Shared.Patch", "..\CS2Shared\CS2Shared.Patch\CS2Shared.Patch.shproj", "{FE75893F-4D5B-4381-84C0-DA65BE049D12}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebugConsole", "DebugConsole\DebugConsole.csproj", "{F285E6BD-D43B-44A8-8CF0-34B6CB622E8B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{98CFFAAA-E3AE-4A84-B83A-2A090813A361}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98CFFAAA-E3AE-4A84-B83A-2A090813A361}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98CFFAAA-E3AE-4A84-B83A-2A090813A361}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F285E6BD-D43B-44A8-8CF0-34B6CB622E8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F285E6BD-D43B-44A8-8CF0-34B6CB622E8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F285E6BD-D43B-44A8-8CF0-34B6CB622E8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F285E6BD-D43B-44A8-8CF0-34B6CB622E8B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,56 @@
+.panel {
+    position: absolute;
+    top: 60rem;
+    left: var(--screenPadding);
+    overflow: visible;
+    width: 400rem;
+    max-height: 890rem;
+
+    > :nth-child(2) {
+        > :nth-child(1) {
+            > :nth-child(1) {
+                padding-right: 0 !important;
+            }
+            > :nth-child(2) {
+                right: 2rem;
+            }
+        }
+    }
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.headerModIcon {
+    width: 24rem;
+    height: 24rem;
+    margin-right: 10rem;
+}
+
+.headerModName {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-grow: 1;
+    font-size: var(--fontSizeS);
+}
+
+.headerCloseButton {
+    width: 24rem;
+    height: 24rem;
+    margin-left: 10rem;
+}
+
+.modIcon {
+    width: 1.2em;
+    height: 1.2em;
+}
+
+.headerText {
+    margin-left: 5rem;
+    font-size: 14rem;
+}

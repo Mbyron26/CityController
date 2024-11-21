@@ -7,7 +7,7 @@ using Unity.Entities;
 
 namespace CityController.Systems;
 
-public partial class SignatureBuildingControllerSystem : GameSystemExtensionBase {
+public partial class SignatureBuildingControllerSystem : GameSystemBaseExtension {
     private EntityQuery signatureBuildingGroup;
     protected override void OnCreate() {
         base.OnCreate();

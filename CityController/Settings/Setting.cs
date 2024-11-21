@@ -1,17 +1,16 @@
-﻿using CityController.Systems;
+﻿using System.Collections.Generic;
+using CityController.Systems;
 using Colossal.IO.AssetDatabase;
-using CS2Shared.Common;
+using CS2Shared.Settings;
 using CS2Shared.Tools;
 using Game.Input;
 using Game.Modding;
 using Game.Settings;
 using Game.UI;
 using Game.UI.Widgets;
-using System.Collections.Generic;
-using System.Linq;
 using Unity.Entities;
 
-namespace CityController;
+namespace CityController.Settings;
 
 [FileLocation($"ModsSettings/{nameof(CityController)}/{nameof(Setting)}")]
 #if DEBUG
@@ -23,8 +22,7 @@ namespace CityController;
 [SettingsUIGroupOrder(ModInfo, Achievements, Money, Reset)]
 [SettingsUIShowGroupName(ModInfo, Achievements, Money, Reset)]
 #endif
-public class Setting : ModSettingBase {
-    private bool achievementsEnabled = true;
+public partial class Setting : ModSettingBase {
     internal static Setting Instance { get; set; }
 
     public const string AddMoneyAction = nameof(AddMoneyAction);
@@ -38,15 +36,12 @@ public class Setting : ModSettingBase {
 
     [SettingsUISection(General, Achievements)]
     [SettingsUIHideByCondition(typeof(Setting), nameof(IsAchievementEnablerIncluded))]
-    public bool AchievementsEnabled {
-        get => achievementsEnabled;
-        set {
-            achievementsEnabled = value;
-            World.DefaultGameObjectInjectionWorld?.GetOrCreateSystemManaged<AchievementsControllerSystem>()?.SetAchievements(value);
-        }
-    }
+    [SettingsUISetter(typeof(Setting), nameof(OnAchievementsOptionChanged))]
+    public bool AchievementsEnabled { get; set; }
 
     private bool IsAchievementEnablerIncluded() => ModTools.IsModInclusive("AchievementEnabler");
+
+    private void OnAchievementsOptionChanged(bool value) => World.DefaultGameObjectInjectionWorld?.GetOrCreateSystemManaged<AchievementsControllerSystem>()?.SetAchievements(value);
 
     [SettingsUISlider(min = 10000, max = 5000000, step = 50000, scalarMultiplier = 1, unit = Unit.kInteger)]
     [SettingsUISection(General, Money)]
@@ -194,6 +189,11 @@ public class Setting : ModSettingBase {
     }
     #endregion
 
+#if DEBUG
+    [SettingsUIKeyboardBinding(BindingKeyboard.T, "DebugAction", ctrl: true, shift: true)]
+    [SettingsUISection(KeyBindings, Money)]
+    public ProxyBinding DebugKeyboardBinding { get; set; }
+#endif
 
     [SettingsUIKeyboardBinding(BindingKeyboard.M, AddMoneyAction, ctrl: true, shift: true)]
     [SettingsUISection(KeyBindings, Money)]
@@ -205,6 +205,7 @@ public class Setting : ModSettingBase {
 
     public override void SetDefaults() {
         base.SetDefaults();
+        AchievementsEnabled = true;
         ManualMoneyAmount = 1000000;
         AutomaticAddMoney = false;
         AutomaticAddMoneyThreshold = 1000000;
@@ -212,6 +213,7 @@ public class Setting : ModSettingBase {
         InitialMoney = 0;
         CustomMilestone = false;
         MilestoneLevel = 19;
+        Notification.SetDefaults();
     }
 
     public string[] Milestones { get; } = new string[] {
@@ -237,40 +239,5 @@ public class Setting : ModSettingBase {
         "Megalopolis",
     };
 
-    protected override void CreateLocaleSource() {
-        base.CreateLocaleSource();
-        AddLocaleSource(GetSettingsLocaleID(), "City Controller");
-        AddLocaleSource(GetOptionGroupLocaleID(Achievements), "Achievements");
-        AddLocaleSource(GetOptionGroupLocaleID(Money), "Money");
-        AddLocaleSource(GetOptionGroupLocaleID(Milestone), "Milestone");
-        AddLocaleSource(GetOptionLabelLocaleID(nameof(AchievementsEnabled)), "Enable Achievements");
-        AddLocaleSource(GetOptionDescLocaleID(nameof(AchievementsEnabled)), "Allows Achievements system to be activated even when Mods ars enabled, Unlock All or Unlimited Money is enabled.");
-        AddLocaleSource(GetOptionLabelLocaleID(nameof(AutomaticAddMoney)), "Automatic Add Money");
-        AddLocaleSource(GetOptionDescLocaleID(nameof(AutomaticAddMoney)), $"Select to enable automatic add money mode.");
-        AddLocaleSource(GetOptionLabelLocaleID(nameof(ManualMoneyAmount)), "Manual Money Amount");
-        AddLocaleSource(GetOptionDescLocaleID(nameof(ManualMoneyAmount)), $"Set this value to manually add/subtract money amounts.");
-        AddLocaleSource(GetOptionLabelLocaleID(nameof(AutomaticAddMoneyThreshold)), "Automatic Add Money Threshold");
-        AddLocaleSource(GetOptionDescLocaleID(nameof(AutomaticAddMoneyThreshold)), $"Set this value to automatically add money when money falls below this set threshold.");
-        AddLocaleSource(GetOptionLabelLocaleID(nameof(AutomaticAddMoneyAmount)), "Automatic Add Money Amount");
-        AddLocaleSource(GetOptionDescLocaleID(nameof(AutomaticAddMoneyAmount)), $"Set the amount of money that will be automatically added when money falls below the threshold.");
-        AddLocaleSource(GetOptionLabelLocaleID(nameof(MoneyTransfer)), "Money Transfer");
-        AddLocaleSource(GetOptionDescLocaleID(nameof(MoneyTransfer)), $"Allows you to switch Unlimited Money to Limited Money in the game, this options only available in-game");
-        AddLocaleSource(GetOptionWarningLocaleID(nameof(MoneyTransfer)), "Are you sure you want to convert Unlimited Money to Limited Money? This operation is not reversible!");
-        AddLocaleSource(GetOptionLabelLocaleID(nameof(CustomMilestone)), "Custom Milestone");
-        AddLocaleSource(GetOptionDescLocaleID(nameof(CustomMilestone)), "Enable this option to customize the start milestone, and needs to be seton the main menu page before entering the game.");
-        AddLocaleSource(new Dictionary<string, string>() {
-            { GetOptionLabelLocaleID(nameof(MilestoneLevel)), "Milestone" },
-            { GetOptionDescLocaleID(nameof(MilestoneLevel)), "Select any milestone level to unlock before starting game, and needs to be set on the main menu page before entering the game." },
-            { GetOptionLabelLocaleID(nameof(AddMoneyKeyboardBinding)), "Add Money" },
-            { GetOptionDescLocaleID(nameof(AddMoneyKeyboardBinding)), $"Hotkeys for adding money within the game." },
-            { GetBindingKeyLocaleID(AddMoneyAction), "Add Money" },
-            { GetOptionLabelLocaleID(nameof(SubtractMoneyKeyboardBinding)), "Subtract Money" },
-            { GetOptionDescLocaleID(nameof(SubtractMoneyKeyboardBinding)), $"Hotkeys for subtracting money within the game." },
-            { GetBindingKeyLocaleID(SubtractMoneyAction), "Subtract Money" },
-            { GetOptionLabelLocaleID(nameof(InitialMoney)), "Initial Money" },
-            { GetOptionDescLocaleID(nameof(InitialMoney)), $"Set the game initial money. This option is valid for New/Loaded games and only takes effect once. Note that this option can only be changed when not in game." },
-            { GetOptionLocaleID("GameDefault"), "Game Default" },
-        });
-        AddLocaleSource(Milestones.ToDictionary(milestone => GetOptionLocaleID(milestone), milestone => milestone));
-    }
+    
 }
