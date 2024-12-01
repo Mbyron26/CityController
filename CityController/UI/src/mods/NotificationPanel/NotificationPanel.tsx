@@ -1,8 +1,8 @@
 import { useValue } from "cs2/api";
-import { Theme, game } from "cs2/bindings";
+import { game } from "cs2/bindings";
 import { useLocalization } from "cs2/l10n";
 import { getModule } from "cs2/modding";
-import { Button, Panel, Scrollable, Tooltip } from "cs2/ui";
+import { Button, Panel } from "cs2/ui";
 import {
     BuildingAbandonedCollapsedNotificationBinding$, BuildingAbandonedNotificationBinding$, BuildingCondemnedNotificationBinding$,
     BuildingHighRentNotificationBinding$,
@@ -59,13 +59,16 @@ import {
     WaterPipeSewagePipeNotConnectedNotificationBinding$,
     WaterPipeWaterNotificationBinding$,
     WaterPipeWaterPipeNotConnectedNotificationBinding$,
-    controlPanelEnabled$,
+    CompanyNoInputsNotificationBinding$, CompanyNoCustomersNotificationBinding$,
+    OnCompanyNoInputsNotificationBindingToggle, OnCompanyNoCustomersNotificationBindingToggle, WorkProviderUneducatedNotificationBinding$, WorkProviderEducatedNotificationBinding$, OnWorkProviderUneducatedNotificationBindingToggle, OnWorkProviderEducatedNotificationBindingToggle, DisasterWeatherDamageNotificationBinding$, DisasterWeatherDestroyedNotificationBinding$, DisasterWaterDamageNotificationBinding$, DisasterWaterDestroyedNotificationBinding$, DisasterDestroyedNotificationBinding$, OnDisasterWeatherDamageNotificationBindingToggle, OnDisasterWeatherDestroyedNotificationBindingToggle, OnDisasterWaterDamageNotificationBindingToggle, OnDisasterWaterDestroyedNotificationBindingToggle, OnDisasterDestroyedNotificationBindingToggle, FireFireNotificationBinding$, FireBurnedDownNotificationBinding$, OnFireFireNotificationBindingToggle, OnFireBurnedDownNotificationBindingToggle, GarbageGarbageNotificationBinding$, GarbageFacilityFullNotificationBinding$, OnGarbageGarbageNotificationBindingToggle, OnGarbageFacilityFullNotificationBindingToggle, HealthcareAmbulanceNotificationBinding$, HealthcareHearseNotificationBinding$, HealthcareFacilityFullNotificationBinding$, OnHealthcareAmbulanceNotificationBindingToggle, OnHealthcareHearseNotificationBindingToggle, OnHealthcareFacilityFullNotificationBindingToggle, PoliceTrafficAccidentNotificationBinding$, PoliceCrimeSceneNotificationBinding$, OnPoliceTrafficAccidentNotificationBindingToggle, OnPoliceCrimeSceneNotificationBindingToggle,
+    PollutionAirPollutionNotificationBinding$, PollutionNoisePollutionNotificationBinding$, PollutionGroundPollutionNotificationBinding$, OnPollutionAirPollutionNotificationBindingToggle, OnPollutionNoisePollutionNotificationBindingToggle, OnPollutionGroundPollutionNotificationBindingToggle, ResourceConsumerNoResourceNotificationBinding$, OnResourceConsumerNoResourceNotificationBindingToggle, RoutePathfindNotificationBinding$, OnRoutePathfindNotificationBindingToggle, TransportLineVehicleNotificationBinding$, OnTransportLineVehicleNotificationBindingToggle,
+    controlPanelEnabled$
 } from "../Bindings/Bindings";
-import { InfoCheckbox } from "../InfoCheckbox/InfoCheckbox";
-import { VanillaComponentResolver } from "../VanillaComponentResolver/VanillaComponentResolver";
-import styles from "../NotificationPanel/NotificationPanel.module.scss";
-import { InfoPanel } from "../InfoPanel/InfoPanel";
 import { Divider } from "../Divider/Divider";
+import { InfoCheckbox } from "../InfoCheckbox/InfoCheckbox";
+import { InfoPanel } from "../InfoPanel/InfoPanel";
+import styles from "../NotificationPanel/NotificationPanel.module.scss";
+import { VanillaComponentResolver } from "../VanillaComponentResolver/VanillaComponentResolver";
 
 
 const modIconSrc = "coui://ui-mods/images/CityControllerIcon_colored.svg";
@@ -87,7 +90,6 @@ export const NotificationPanel = () => {
     const electricityBatteryEmptyNotificationBinding = useValue(ElectricityBatteryEmptyNotificationBinding$);
     const electricityLowVoltageNotConnectedBinding = useValue(ElectricityLowVoltageNotConnectedBinding$);
     const electricityHighVoltageNotConnectedBinding = useValue(ElectricityHighVoltageNotConnectedBinding$);
-
     const waterPipeWaterNotificationBinding = useValue(WaterPipeWaterNotificationBinding$);
     const waterPipeDirtyWaterNotificationBinding = useValue(WaterPipeDirtyWaterNotificationBinding$);
     const waterPipeSewageNotificationBinding = useValue(WaterPipeSewageNotificationBinding$);
@@ -98,13 +100,11 @@ export const NotificationPanel = () => {
     const waterPipeNotEnoughGroundwaterNotificationBinding = useValue(WaterPipeNotEnoughGroundwaterNotificationBinding$);
     const waterPipeNotEnoughSurfaceWaterNotificationBinding = useValue(WaterPipeNotEnoughSurfaceWaterNotificationBinding$);
     const waterPipeDirtyWaterPumpNotificationBinding = useValue(WaterPipeDirtyWaterPumpNotificationBinding$);
-
     const buildingAbandonedCollapsedNotificationBinding = useValue(BuildingAbandonedCollapsedNotificationBinding$);
     const buildingAbandonedNotificationBinding = useValue(BuildingAbandonedNotificationBinding$);
     const buildingCondemnedNotificationBinding = useValue(BuildingCondemnedNotificationBinding$);
     const buildingTurnedOffNotificationBinding = useValue(BuildingTurnedOffNotificationBinding$);
     const buildingHighRentNotificationBinding = useValue(BuildingHighRentNotificationBinding$);
-
     const trafficBottleneckNotificationBinding = useValue(TrafficBottleneckNotificationBinding$);
     const trafficDeadEndNotificationBinding = useValue(TrafficDeadEndNotificationBinding$);
     const trafficRoadConnectionNotificationBinding = useValue(TrafficRoadConnectionNotificationBinding$);
@@ -113,7 +113,30 @@ export const NotificationPanel = () => {
     const trafficShipConnectionNotificationBinding = useValue(TrafficShipConnectionNotificationBinding$);
     const trafficTrainConnectionNotificationBinding = useValue(TrafficTrainConnectionNotificationBinding$);
     const trafficPedestrianConnectionNotificationBinding = useValue(TrafficPedestrianConnectionNotificationBinding$);
-
+    const companyNoInputsNotificationBinding = useValue(CompanyNoInputsNotificationBinding$);
+    const companyNoCustomersNotificationBinding = useValue(CompanyNoCustomersNotificationBinding$);
+    const workProviderUneducatedNotificationBinding = useValue(WorkProviderUneducatedNotificationBinding$);
+    const workProviderEducatedNotificationBinding = useValue(WorkProviderEducatedNotificationBinding$);
+    const disasterWeatherDamageNotificationBinding = useValue(DisasterWeatherDamageNotificationBinding$);
+    const disasterWeatherDestroyedNotificationBinding = useValue(DisasterWeatherDestroyedNotificationBinding$);
+    const disasterWaterDamageNotificationBinding = useValue(DisasterWaterDamageNotificationBinding$);
+    const disasterWaterDestroyedNotificationBinding = useValue(DisasterWaterDestroyedNotificationBinding$);
+    const disasterDestroyedNotificationBinding = useValue(DisasterDestroyedNotificationBinding$);
+    const fireFireNotificationBinding = useValue(FireFireNotificationBinding$);
+    const fireBurnedDownNotificationBinding = useValue(FireBurnedDownNotificationBinding$);
+    const garbageGarbageNotificationBinding = useValue(GarbageGarbageNotificationBinding$);
+    const garbageFacilityFullNotificationBinding = useValue(GarbageFacilityFullNotificationBinding$);
+    const healthcareAmbulanceNotificationBinding = useValue(HealthcareAmbulanceNotificationBinding$);
+    const healthcareHearseNotificationBinding = useValue(HealthcareHearseNotificationBinding$);
+    const healthcareFacilityFullNotificationBinding = useValue(HealthcareFacilityFullNotificationBinding$);
+    const policeTrafficAccidentNotificationBinding = useValue(PoliceTrafficAccidentNotificationBinding$);
+    const policeCrimeSceneNotificationBinding = useValue(PoliceCrimeSceneNotificationBinding$);
+    const pollutionAirPollutionNotificationBinding = useValue(PollutionAirPollutionNotificationBinding$);
+    const pollutionNoisePollutionNotificationBinding = useValue(PollutionNoisePollutionNotificationBinding$);
+    const pollutionGroundPollutionNotificationBinding = useValue(PollutionGroundPollutionNotificationBinding$);
+    const resourceConsumerNoResourceNotificationBinding = useValue(ResourceConsumerNoResourceNotificationBinding$);
+    const routePathfindNotificationBinding = useValue(RoutePathfindNotificationBinding$);
+    const transportLineVehicleNotificationBinding = useValue(TransportLineVehicleNotificationBinding$);
     if (isPhotoMode || !showPanel) {
         return null;
     }
@@ -371,11 +394,223 @@ export const NotificationPanel = () => {
                         label={localize("TrafficPedestrianConnectionNotification")}
                         isChecked={trafficPedestrianConnectionNotificationBinding}
                         onToggle={(value) => OnTrafficPedestrianConnectionNotificationBindingToggle(value)}
-                        style={{ marginBottom: "5rem" }}
                     ></InfoCheckbox>
                 </InfoPanel>
 
+                <Divider></Divider>
+
+                <InfoPanel title={localize("Company")}>
+                    <InfoCheckbox
+                        image="media/Game/Notifications/NoInputs.svg"
+                        label={localize("CompanyNoInputsNotification")}
+                        isChecked={companyNoInputsNotificationBinding}
+                        onToggle={(value) => OnCompanyNoInputsNotificationBindingToggle(value)}
+                        style={{ marginBottom: "5rem" }}
+                    ></InfoCheckbox>
+                    <InfoCheckbox
+                        image="media/Game/Notifications/NoCustomers.svg"
+                        label={localize("CompanyNoCustomersNotification")}
+                        isChecked={companyNoCustomersNotificationBinding}
+                        onToggle={(value) => OnCompanyNoCustomersNotificationBindingToggle(value)}
+                    ></InfoCheckbox>
+                </InfoPanel>
+
+                <Divider></Divider>
+
+                <InfoPanel title={localize("WorkProvider")}>
+                    <InfoCheckbox
+                        image="media/Game/Notifications/NoWorkers.svg"
+                        label={localize("WorkProviderUneducatedNotification")}
+                        isChecked={workProviderUneducatedNotificationBinding}
+                        onToggle={(value) => OnWorkProviderUneducatedNotificationBindingToggle(value)}
+                        style={{ marginBottom: "5rem" }}
+                    ></InfoCheckbox>
+                    <InfoCheckbox
+                        image="media/Game/Notifications/NoEducatedWorkers.svg"
+                        label={localize("WorkProviderEducatedNotification")}
+                        isChecked={workProviderEducatedNotificationBinding}
+                        onToggle={(value) => OnWorkProviderEducatedNotificationBindingToggle(value)}
+                    ></InfoCheckbox>
+                </InfoPanel>
+
+                <Divider></Divider>
+
+                <InfoPanel title={localize("Disaster")}>
+                    <InfoCheckbox
+                        image="media/Game/Notifications/WeatherDamage.svg"
+                        label={localize("DisasterWeatherDamageNotification")}
+                        isChecked={disasterWeatherDamageNotificationBinding}
+                        onToggle={(value) => OnDisasterWeatherDamageNotificationBindingToggle(value)}
+                        style={{ marginBottom: "5rem" }}
+                    ></InfoCheckbox>
+                    <InfoCheckbox
+                        image="media/Game/Notifications/WeatherDestroyed.svg"
+                        label={localize("DisasterWeatherDestroyedNotification")}
+                        isChecked={disasterWeatherDestroyedNotificationBinding}
+                        onToggle={(value) => OnDisasterWeatherDestroyedNotificationBindingToggle(value)}
+                        style={{ marginBottom: "5rem" }}
+                    ></InfoCheckbox>
+                    <InfoCheckbox
+                        image="media/Game/Notifications/WaterDamage.svg"
+                        label={localize("DisasterWaterDamageNotification")}
+                        isChecked={disasterWaterDamageNotificationBinding}
+                        onToggle={(value) => OnDisasterWaterDamageNotificationBindingToggle(value)}
+                        style={{ marginBottom: "5rem" }}
+                    ></InfoCheckbox>
+                    <InfoCheckbox
+                        image="media/Game/Notifications/WaterDestroyed.svg"
+                        label={localize("DisasterWaterDestroyedNotification")}
+                        isChecked={disasterWaterDestroyedNotificationBinding}
+                        onToggle={(value) => OnDisasterWaterDestroyedNotificationBindingToggle(value)}
+                        style={{ marginBottom: "5rem" }}
+                    ></InfoCheckbox>
+                    <InfoCheckbox
+                        image="media/Game/Notifications/Destroyed.svg"
+                        label={localize("DisasterDestroyedNotification")}
+                        isChecked={disasterDestroyedNotificationBinding}
+                        onToggle={(value) => OnDisasterDestroyedNotificationBindingToggle(value)}
+                    ></InfoCheckbox>
+                </InfoPanel>
+
+                <Divider></Divider>
+
+                <InfoPanel title={localize("Fire")}>
+                    <InfoCheckbox
+                        image="media/Game/Notifications/BuildingOnFire.svg"
+                        label={localize("FireFireNotification")}
+                        isChecked={fireFireNotificationBinding}
+                        onToggle={(value) => OnFireFireNotificationBindingToggle(value)}
+                        style={{ marginBottom: "5rem" }}
+                    ></InfoCheckbox>
+                    <InfoCheckbox
+                        image="media/Game/Notifications/BurnedDown.svg"
+                        label={localize("FireBurnedDownNotification")}
+                        isChecked={fireBurnedDownNotificationBinding}
+                        onToggle={(value) => OnFireBurnedDownNotificationBindingToggle(value)}
+                    ></InfoCheckbox>
+                </InfoPanel>
+
+                <Divider></Divider>
+
+                <InfoPanel title={localize("Garbage")}>
+                    <InfoCheckbox
+                        image="media/Game/Notifications/TooMuchGarbage.svg"
+                        label={localize("GarbageGarbageNotification")}
+                        isChecked={garbageGarbageNotificationBinding}
+                        onToggle={(value) => OnGarbageGarbageNotificationBindingToggle(value)}
+                        style={{ marginBottom: "5rem" }}
+                    ></InfoCheckbox>
+                    <InfoCheckbox
+                        image="media/Game/Notifications/FacilityFull.svg"
+                        label={localize("GarbageFacilityFullNotification")}
+                        isChecked={garbageFacilityFullNotificationBinding}
+                        onToggle={(value) => OnGarbageFacilityFullNotificationBindingToggle(value)}
+                    ></InfoCheckbox>
+                </InfoPanel>
+
+                <Divider></Divider>
+
+                <InfoPanel title={localize("Healthcare")}>
+                    <InfoCheckbox
+                        image="media/Game/Notifications/MedicalEmergency.svg"
+                        label={localize("HealthcareAmbulanceNotification")}
+                        isChecked={healthcareAmbulanceNotificationBinding}
+                        onToggle={(value) => OnHealthcareAmbulanceNotificationBindingToggle(value)}
+                        style={{ marginBottom: "5rem" }}
+                    ></InfoCheckbox>
+                    <InfoCheckbox
+                        image="media/Game/Notifications/HearseServiceNeeded.svg"
+                        label={localize("HealthcareHearseNotification")}
+                        isChecked={healthcareHearseNotificationBinding}
+                        onToggle={(value) => OnHealthcareHearseNotificationBindingToggle(value)}
+                        style={{ marginBottom: "5rem" }}
+                    ></InfoCheckbox>
+                    <InfoCheckbox
+                        image="media/Game/Notifications/FacilityFull.svg"
+                        label={localize("HealthcareFacilityFullNotification")}
+                        isChecked={healthcareFacilityFullNotificationBinding}
+                        onToggle={(value) => OnHealthcareFacilityFullNotificationBindingToggle(value)}
+                    ></InfoCheckbox>
+                </InfoPanel>
+
+                <Divider></Divider>
+
+                <InfoPanel title={localize("Police")}>
+                    <InfoCheckbox
+                        image="media/Game/Notifications/TrafficAccident.svg"
+                        label={localize("PoliceTrafficAccidentNotification")}
+                        isChecked={policeTrafficAccidentNotificationBinding}
+                        onToggle={(value) => OnPoliceTrafficAccidentNotificationBindingToggle(value)}
+                        style={{ marginBottom: "5rem" }}
+                    ></InfoCheckbox>
+                    <InfoCheckbox
+                        image="media/Game/Notifications/CrimeScene.svg"
+                        label={localize("PoliceCrimeSceneNotification")}
+                        isChecked={policeCrimeSceneNotificationBinding}
+                        onToggle={(value) => OnPoliceCrimeSceneNotificationBindingToggle(value)}
+                    ></InfoCheckbox>
+                </InfoPanel>
+
+                <Divider></Divider>
+
+                <InfoPanel title={localize("Pollution")}>
+                    <InfoCheckbox
+                        image="media/Game/Notifications/AirPollution.svg"
+                        label={localize("PollutionAirPollutionNotification")}
+                        isChecked={pollutionAirPollutionNotificationBinding}
+                        onToggle={(value) => OnPollutionAirPollutionNotificationBindingToggle(value)}
+                        style={{ marginBottom: "5rem" }}
+                    ></InfoCheckbox>
+                    <InfoCheckbox
+                        image="media/Game/Notifications/NoisePollution.svg"
+                        label={localize("PollutionNoisePollutionNotification")}
+                        isChecked={pollutionNoisePollutionNotificationBinding}
+                        onToggle={(value) => OnPollutionNoisePollutionNotificationBindingToggle(value)}
+                        style={{ marginBottom: "5rem" }}
+                    ></InfoCheckbox>
+                    <InfoCheckbox
+                        image="media/Game/Notifications/PollutedSoil.svg"
+                        label={localize("PollutionGroundPollutionNotification")}
+                        isChecked={pollutionGroundPollutionNotificationBinding}
+                        onToggle={(value) => OnPollutionGroundPollutionNotificationBindingToggle(value)}
+                    ></InfoCheckbox>
+                </InfoPanel>
+
+                <Divider></Divider>
+
+                <InfoPanel title={localize("ResourceConsumer")}>
+                    <InfoCheckbox
+                        image="media/Game/Notifications/NotEnoughIndustrialGoods.svg"
+                        label={localize("ResourceConsumerNoResourceNotification")}
+                        isChecked={resourceConsumerNoResourceNotificationBinding}
+                        onToggle={(value) => OnResourceConsumerNoResourceNotificationBindingToggle(value)}
+                    ></InfoCheckbox>
+                </InfoPanel>
+
+                <Divider></Divider>
+
+                <InfoPanel title={localize("Route")}>
+                    <InfoCheckbox
+                        image="media/Game/Notifications/PathfindFailed.svg"
+                        label={localize("RoutePathfindNotification")}
+                        isChecked={routePathfindNotificationBinding}
+                        onToggle={(value) => OnRoutePathfindNotificationBindingToggle(value)}
+                    ></InfoCheckbox>
+                </InfoPanel>
+
+                <Divider></Divider>
+
+                <InfoPanel title={localize("TransportLine")}>
+                    <InfoCheckbox
+                        image="media/Game/Notifications/NoVehicles.svg"
+                        label={localize("TransportLineVehicleNotification")}
+                        isChecked={transportLineVehicleNotificationBinding}
+                        onToggle={(value) => OnTransportLineVehicleNotificationBindingToggle(value)}
+                    ></InfoCheckbox>
+                </InfoPanel>
             </Panel>
+
+            
 
         </>
     )

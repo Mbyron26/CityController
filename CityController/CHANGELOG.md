@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.2.1] - 2024-12-01
+- Added company, disaster, fire, garbage, work provider, healthcare, police, pollution, resource consumer, route, transport line notification icon toggle function.
+
 ## [0.2.0] - 2024-11-17
 - Added electricity, water pipe, building, traffic notification icon toggle function.
 - Code optimization.

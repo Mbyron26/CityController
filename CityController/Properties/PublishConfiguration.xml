@@ -7,18 +7,12 @@
 
 ## All functions of this mod are in the development stage.
 
-### Why does this mod contain so few features?
-Many of the features of this mod were completed last year,	unfortunately, due to my work, the development work was put on hold. This mod original contained many functions, but some mod developers have provided corresponding function mods, so this mod was forced to delete a considerable part of its functions.
-
-### Why release at all?
-Because many players still want this mod to be released.
-
 ### Features
 - Automatic add money, manual add/subtract money, unlimited money and limited money conversion.
 - Custom milestone.
+- Notification icon displayed/hidden.
 
 ### Plans
-- Notification icon displayed/hidden.
 - Custom unlock.
 - City service control, fire, death, etc.
 - Any interesting features?
@@ -30,15 +24,15 @@ This mod provides the same custom mod language as Cities Skylines 1, but the tra
 Give feedback through discord or via GitHub.
 	</LongDescription>
 	<Thumbnail Value="Properties/Thumbnail.png" />
-	<Screenshot Value="Properties/Previews/NotificationPanel.jpg" />
+	<Screenshot Value="Properties/Previews/NotificationPanel.png" />
 	<Tag Value="Code Mod" />
 	<ForumLink Value="https://forum.paradoxplaza.com/forum/threads/city-controller.1702575/" />
-	<ModVersion Value="0.2.0" />
+	<ModVersion Value="0.2.1" />
 	<GameVersion Value="1.1.*" />
-	<Dependency Id="74417" DisplayName="Unified Icon Library" Version="1.0.10" />
+	<Dependency Id="74417" DisplayName="Unified Icon Library" Version="1.0.11" />
 	<ChangeLog>
-## [0.2.0]
-- Added electricity, water pipe, building, traffic notification icon toggle function.
+## [0.2.1]
+- Added company, disaster, fire, garbage, work provider, healthcare, police, pollution, resource consumer, route, transport line notification icon toggle function.
 - Code optimization.
 	</ChangeLog>
 	<ExternalLink Type="github" Url="https://github.com/Mbyron26/CityController" />

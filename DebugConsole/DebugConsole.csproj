@@ -28,4 +28,8 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CityController\CityController.csproj" />
+  </ItemGroup>
+
 </Project>

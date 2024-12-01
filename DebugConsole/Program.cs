@@ -1,25 +1,26 @@
 ﻿using DebugConsole.Notification;
-using System.Text;
+using System.Reflection;
+using CityController;
+using Game.Settings;
 
 namespace DebugConsole;
 
 internal class Program {
-    public static StringBuilder StringBuilderShared { get; } = new();
-    public static List<Func<string>> Callback { get; } = [];
+    public static event Func<string>? OnPrinted;
 
-    static void Main() {
+    public static void Main() {
         Console.WriteLine($"CityController.DebugConsole");
-        Electricity electricity = new();
-        WaterPipe waterPipe = new();
-        Building building = new();
-        Traffic traffic = new();
-
-        if (Callback.Count == 0) 
-            return;
-        Console.WriteLine($"Callback count: {Callback.Count}");
-        Console.WriteLine(Environment.NewLine);
-        foreach (var item in Callback) {
-            Console.WriteLine(item?.Invoke());
+        foreach (var type in Assembly.GetExecutingAssembly().GetTypes().Where(t => t.GetCustomAttribute<NotificationAttribute>() != null)) {
+            var instance = Activator.CreateInstance(type);
+            Console.WriteLine($"Instance of {type.Name} created.");
         }
+
+        Console.WriteLine($"Invocation count: {OnPrinted?.GetInvocationList().Length ?? 0}");
+        Console.WriteLine(Environment.NewLine);
+        Console.WriteLine(OnPrinted?.Invoke());
+        Core.GetNotificationInfo();
+
+        CityController.Settings.Setting setting = new(new Mod());
+        Console.WriteLine(setting is null);
     }
 }

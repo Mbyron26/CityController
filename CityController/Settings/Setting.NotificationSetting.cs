@@ -40,6 +40,41 @@ public partial class Setting {
         public bool TrafficShipConnectionNotification { get; set; }
         public bool TrafficTrainConnectionNotification { get; set; }
         public bool TrafficPedestrianConnectionNotification { get; set; }
+        
+        public bool CompanyNoInputsNotification { get; set; }
+        public bool CompanyNoCustomersNotification { get; set; }
+
+        public bool WorkProviderUneducatedNotification { get; set; }
+        public bool WorkProviderEducatedNotification { get; set; }
+
+        public bool DisasterWeatherDamageNotification { get; set; }
+        public bool DisasterWeatherDestroyedNotification { get; set; }
+        public bool DisasterWaterDamageNotification { get; set; }
+        public bool DisasterWaterDestroyedNotification { get; set; }
+        public bool DisasterDestroyedNotification { get; set; }
+
+        public bool FireFireNotification { get; set; }
+        public bool FireBurnedDownNotification { get; set; }
+
+        public bool GarbageGarbageNotification { get; set; }
+        public bool GarbageFacilityFullNotification { get; set; }
+
+        public bool HealthcareAmbulanceNotification { get; set; }
+        public bool HealthcareHearseNotification { get; set; }
+        public bool HealthcareFacilityFullNotification { get; set; }
+
+        public bool PoliceTrafficAccidentNotification { get; set; }
+        public bool PoliceCrimeSceneNotification { get; set; }
+
+        public bool PollutionAirPollutionNotification { get; set; }
+        public bool PollutionNoisePollutionNotification { get; set; }
+        public bool PollutionGroundPollutionNotification { get; set; }
+
+        public bool ResourceConsumerNoResourceNotification { get; set; }
+
+        public bool RoutePathfindNotification { get; set; }
+
+        public bool TransportLineVehicleNotification { get; set; }
 
         public void SetDefaults() {
             ElectricityElectricityNotification = true;
@@ -77,6 +112,41 @@ public partial class Setting {
             TrafficShipConnectionNotification = true;
             TrafficTrainConnectionNotification = true;
             TrafficPedestrianConnectionNotification = true;
+            
+            CompanyNoInputsNotification = true;
+            CompanyNoCustomersNotification = true;
+
+            WorkProviderUneducatedNotification = true;
+            WorkProviderEducatedNotification = true;
+
+            DisasterWeatherDamageNotification = true;
+            DisasterWeatherDestroyedNotification = true;
+            DisasterWaterDamageNotification = true;
+            DisasterWaterDestroyedNotification = true;
+            DisasterDestroyedNotification = true;
+
+            FireFireNotification = true;
+            FireBurnedDownNotification = true;
+
+            GarbageGarbageNotification = true;
+            GarbageFacilityFullNotification = true;
+
+            HealthcareAmbulanceNotification = true;
+            HealthcareHearseNotification = true;
+            HealthcareFacilityFullNotification = true;
+
+            PoliceTrafficAccidentNotification = true;
+            PoliceCrimeSceneNotification = true;
+
+            PollutionAirPollutionNotification = true;
+            PollutionNoisePollutionNotification = true;
+            PollutionGroundPollutionNotification = true;
+
+            ResourceConsumerNoResourceNotification = true;
+
+            RoutePathfindNotification = true;
+
+            TransportLineVehicleNotification = true;
         }
     }
 }

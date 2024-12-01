@@ -12,7 +12,6 @@ export const ElectricityNotEnoughConnectedNotificationBinding$ = bindValue<boole
 export const ElectricityBatteryEmptyNotificationBinding$ = bindValue<boolean>(mod.id, "ElectricityBatteryEmptyNotification");
 export const ElectricityLowVoltageNotConnectedBinding$ = bindValue<boolean>(mod.id, "ElectricityLowVoltageNotConnected");
 export const ElectricityHighVoltageNotConnectedBinding$ = bindValue<boolean>(mod.id, "ElectricityHighVoltageNotConnected");
-
 export const WaterPipeWaterNotificationBinding$ = bindValue<boolean>(mod.id, "WaterPipeWaterNotification");
 export const WaterPipeDirtyWaterNotificationBinding$ = bindValue<boolean>(mod.id, "WaterPipeDirtyWaterNotification");
 export const WaterPipeSewageNotificationBinding$ = bindValue<boolean>(mod.id, "WaterPipeSewageNotification");
@@ -23,13 +22,11 @@ export const WaterPipeNotEnoughSewageCapacityNotificationBinding$ = bindValue<bo
 export const WaterPipeNotEnoughGroundwaterNotificationBinding$ = bindValue<boolean>(mod.id, "WaterPipeNotEnoughGroundwaterNotification");
 export const WaterPipeNotEnoughSurfaceWaterNotificationBinding$ = bindValue<boolean>(mod.id, "WaterPipeNotEnoughSurfaceWaterNotification");
 export const WaterPipeDirtyWaterPumpNotificationBinding$ = bindValue<boolean>(mod.id, "WaterPipeDirtyWaterPumpNotification");
-
 export const BuildingAbandonedCollapsedNotificationBinding$ = bindValue<boolean>(mod.id, "BuildingAbandonedCollapsedNotification");
 export const BuildingAbandonedNotificationBinding$ = bindValue<boolean>(mod.id, "BuildingAbandonedNotification");
 export const BuildingCondemnedNotificationBinding$ = bindValue<boolean>(mod.id, "BuildingCondemnedNotification");
 export const BuildingTurnedOffNotificationBinding$ = bindValue<boolean>(mod.id, "BuildingTurnedOffNotification");
 export const BuildingHighRentNotificationBinding$ = bindValue<boolean>(mod.id, "BuildingHighRentNotification");
-
 export const TrafficBottleneckNotificationBinding$ = bindValue<boolean>(mod.id, "TrafficBottleneckNotification");
 export const TrafficDeadEndNotificationBinding$ = bindValue<boolean>(mod.id, "TrafficDeadEndNotification");
 export const TrafficRoadConnectionNotificationBinding$ = bindValue<boolean>(mod.id, "TrafficRoadConnectionNotification");
@@ -38,7 +35,30 @@ export const TrafficCarConnectionNotificationBinding$ = bindValue<boolean>(mod.i
 export const TrafficShipConnectionNotificationBinding$ = bindValue<boolean>(mod.id, "TrafficShipConnectionNotification");
 export const TrafficTrainConnectionNotificationBinding$ = bindValue<boolean>(mod.id, "TrafficTrainConnectionNotification");
 export const TrafficPedestrianConnectionNotificationBinding$ = bindValue<boolean>(mod.id, "TrafficPedestrianConnectionNotification");
-
+export const CompanyNoInputsNotificationBinding$ = bindValue<boolean>(mod.id, "CompanyNoInputsNotification");
+export const CompanyNoCustomersNotificationBinding$ = bindValue<boolean>(mod.id, "CompanyNoCustomersNotification");
+export const WorkProviderUneducatedNotificationBinding$ = bindValue<boolean>(mod.id, "WorkProviderUneducatedNotification");
+export const WorkProviderEducatedNotificationBinding$ = bindValue<boolean>(mod.id, "WorkProviderEducatedNotification");
+export const DisasterWeatherDamageNotificationBinding$ = bindValue<boolean>(mod.id, "DisasterWeatherDamageNotification");
+export const DisasterWeatherDestroyedNotificationBinding$ = bindValue<boolean>(mod.id, "DisasterWeatherDestroyedNotification");
+export const DisasterWaterDamageNotificationBinding$ = bindValue<boolean>(mod.id, "DisasterWaterDamageNotification");
+export const DisasterWaterDestroyedNotificationBinding$ = bindValue<boolean>(mod.id, "DisasterWaterDestroyedNotification");
+export const DisasterDestroyedNotificationBinding$ = bindValue<boolean>(mod.id, "DisasterDestroyedNotification");
+export const FireFireNotificationBinding$ = bindValue<boolean>(mod.id, "FireFireNotification");
+export const FireBurnedDownNotificationBinding$ = bindValue<boolean>(mod.id, "FireBurnedDownNotification");
+export const GarbageGarbageNotificationBinding$ = bindValue<boolean>(mod.id, "GarbageGarbageNotification");
+export const GarbageFacilityFullNotificationBinding$ = bindValue<boolean>(mod.id, "GarbageFacilityFullNotification");
+export const HealthcareAmbulanceNotificationBinding$ = bindValue<boolean>(mod.id, "HealthcareAmbulanceNotification");
+export const HealthcareHearseNotificationBinding$ = bindValue<boolean>(mod.id, "HealthcareHearseNotification");
+export const HealthcareFacilityFullNotificationBinding$ = bindValue<boolean>(mod.id, "HealthcareFacilityFullNotification");
+export const PoliceTrafficAccidentNotificationBinding$ = bindValue<boolean>(mod.id, "PoliceTrafficAccidentNotification");
+export const PoliceCrimeSceneNotificationBinding$ = bindValue<boolean>(mod.id, "PoliceCrimeSceneNotification");
+export const PollutionAirPollutionNotificationBinding$ = bindValue<boolean>(mod.id, "PollutionAirPollutionNotification");
+export const PollutionNoisePollutionNotificationBinding$ = bindValue<boolean>(mod.id, "PollutionNoisePollutionNotification");
+export const PollutionGroundPollutionNotificationBinding$ = bindValue<boolean>(mod.id, "PollutionGroundPollutionNotification");
+export const ResourceConsumerNoResourceNotificationBinding$ = bindValue<boolean>(mod.id, "ResourceConsumerNoResourceNotification");
+export const RoutePathfindNotificationBinding$ = bindValue<boolean>(mod.id, "RoutePathfindNotification");
+export const TransportLineVehicleNotificationBinding$ = bindValue<boolean>(mod.id, "TransportLineVehicleNotification");
 
 export const OnControlPanelBindingToggle = (enable: boolean) => trigger(mod.id, "ControlPanelEnabled", enable);
 
@@ -51,7 +71,6 @@ export const OnElectricityNotEnoughConnectedNotificationBindingToggle = (enable:
 export const OnElectricityBatteryEmptyNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "ElectricityBatteryEmptyNotification", enable);
 export const OnElectricityLowVoltageNotConnectedBindingToggle = (enable: boolean) => trigger(mod.id, "ElectricityLowVoltageNotConnected", enable);
 export const OnElectricityHighVoltageNotConnectedBindingToggle = (enable: boolean) => trigger(mod.id, "ElectricityHighVoltageNotConnected", enable);
-
 export const OnWaterPipeWaterNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "WaterPipeWaterNotification", enable);
 export const OnWaterPipeDirtyWaterNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "WaterPipeDirtyWaterNotification", enable);
 export const OnWaterPipeSewageNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "WaterPipeSewageNotification", enable);
@@ -62,13 +81,11 @@ export const OnWaterPipeNotEnoughSewageCapacityNotificationBindingToggle = (enab
 export const OnWaterPipeNotEnoughGroundwaterNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "WaterPipeNotEnoughGroundwaterNotification", enable);
 export const OnWaterPipeNotEnoughSurfaceWaterNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "WaterPipeNotEnoughSurfaceWaterNotification", enable);
 export const OnWaterPipeDirtyWaterPumpNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "WaterPipeDirtyWaterPumpNotification", enable);
-
 export const OnBuildingAbandonedCollapsedNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "BuildingAbandonedCollapsedNotification", enable);
 export const OnBuildingAbandonedNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "BuildingAbandonedNotification", enable);
 export const OnBuildingCondemnedNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "BuildingCondemnedNotification", enable);
 export const OnBuildingTurnedOffNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "BuildingTurnedOffNotification", enable);
 export const OnBuildingHighRentNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "BuildingHighRentNotification", enable);
-
 export const OnTrafficBottleneckNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "TrafficBottleneckNotification", enable);
 export const OnTrafficDeadEndNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "TrafficDeadEndNotification", enable);
 export const OnTrafficRoadConnectionNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "TrafficRoadConnectionNotification", enable);
@@ -77,3 +94,27 @@ export const OnTrafficCarConnectionNotificationBindingToggle = (enable: boolean)
 export const OnTrafficShipConnectionNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "TrafficShipConnectionNotification", enable);
 export const OnTrafficTrainConnectionNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "TrafficTrainConnectionNotification", enable);
 export const OnTrafficPedestrianConnectionNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "TrafficPedestrianConnectionNotification", enable);
+export const OnCompanyNoInputsNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "CompanyNoInputsNotification", enable);
+export const OnCompanyNoCustomersNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "CompanyNoCustomersNotification", enable);
+export const OnWorkProviderUneducatedNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "WorkProviderUneducatedNotification", enable);
+export const OnWorkProviderEducatedNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "WorkProviderEducatedNotification", enable);
+export const OnDisasterWeatherDamageNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "DisasterWeatherDamageNotification", enable);
+export const OnDisasterWeatherDestroyedNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "DisasterWeatherDestroyedNotification", enable);
+export const OnDisasterWaterDamageNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "DisasterWaterDamageNotification", enable);
+export const OnDisasterWaterDestroyedNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "DisasterWaterDestroyedNotification", enable);
+export const OnDisasterDestroyedNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "DisasterDestroyedNotification", enable);
+export const OnFireFireNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "FireFireNotification", enable);
+export const OnFireBurnedDownNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "FireBurnedDownNotification", enable);
+export const OnGarbageGarbageNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "GarbageGarbageNotification", enable);
+export const OnGarbageFacilityFullNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "GarbageFacilityFullNotification", enable);
+export const OnHealthcareAmbulanceNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "HealthcareAmbulanceNotification", enable);
+export const OnHealthcareHearseNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "HealthcareHearseNotification", enable);
+export const OnHealthcareFacilityFullNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "HealthcareFacilityFullNotification", enable);
+export const OnPoliceTrafficAccidentNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "PoliceTrafficAccidentNotification", enable);
+export const OnPoliceCrimeSceneNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "PoliceCrimeSceneNotification", enable);
+export const OnPollutionAirPollutionNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "PollutionAirPollutionNotification", enable);
+export const OnPollutionNoisePollutionNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "PollutionNoisePollutionNotification", enable);
+export const OnPollutionGroundPollutionNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "PollutionGroundPollutionNotification", enable);
+export const OnResourceConsumerNoResourceNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "ResourceConsumerNoResourceNotification", enable);
+export const OnRoutePathfindNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "RoutePathfindNotification", enable);
+export const OnTransportLineVehicleNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "TransportLineVehicleNotification", enable);

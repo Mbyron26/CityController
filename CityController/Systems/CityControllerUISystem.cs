@@ -45,6 +45,41 @@ public partial class CityControllerUISystem : UISystemBaseExtension {
     private BoolBinding trafficTrainConnectionNotificationBinding;
     private BoolBinding trafficPedestrianConnectionNotificationBinding;
 
+    private BoolBinding companyNoInputsNotificationBinding;
+    private BoolBinding companyNoCustomersNotificationBinding;
+
+    private BoolBinding workProviderUneducatedNotificationBinding;
+    private BoolBinding workProviderEducatedNotificationBinding;
+
+    private BoolBinding disasterWeatherDamageNotificationBinding;
+    private BoolBinding disasterWeatherDestroyedNotificationBinding;
+    private BoolBinding disasterWaterDamageNotificationBinding;
+    private BoolBinding disasterWaterDestroyedNotificationBinding;
+    private BoolBinding disasterDestroyedNotificationBinding;
+
+    private BoolBinding fireFireNotificationBinding;
+    private BoolBinding fireBurnedDownNotificationBinding;
+
+    private BoolBinding garbageGarbageNotificationBinding;
+    private BoolBinding garbageFacilityFullNotificationBinding;
+
+    private BoolBinding healthcareAmbulanceNotificationBinding;
+    private BoolBinding healthcareHearseNotificationBinding;
+    private BoolBinding healthcareFacilityFullNotificationBinding;
+
+    private BoolBinding policeTrafficAccidentNotificationBinding;
+    private BoolBinding policeCrimeSceneNotificationBinding;
+
+    private BoolBinding pollutionAirPollutionNotificationBinding;
+    private BoolBinding pollutionNoisePollutionNotificationBinding;
+    private BoolBinding pollutionGroundPollutionNotificationBinding;
+
+    private BoolBinding resourceConsumerNoResourceNotificationBinding;
+
+    private BoolBinding routePathfindNotificationBinding;
+
+    private BoolBinding transportLineVehicleNotificationBinding;
+
     protected override void OnCreate() {
         base.OnCreate();
         notificationControllerSystem = World.GetOrCreateSystemManaged<NotificationControllerSystem>();
@@ -86,6 +121,41 @@ public partial class CityControllerUISystem : UISystemBaseExtension {
         trafficShipConnectionNotificationBinding = AddBoolBindingAndTriggerBinding(nameof(Setting.Instance.Notification.TrafficShipConnectionNotification), Setting.Instance.Notification.TrafficShipConnectionNotification, OnTrafficShipConnectionNotificationToggle);
         trafficTrainConnectionNotificationBinding = AddBoolBindingAndTriggerBinding(nameof(Setting.Instance.Notification.TrafficTrainConnectionNotification), Setting.Instance.Notification.TrafficTrainConnectionNotification, OnTrafficTrainConnectionNotificationToggle);
         trafficPedestrianConnectionNotificationBinding = AddBoolBindingAndTriggerBinding(nameof(Setting.Instance.Notification.TrafficPedestrianConnectionNotification), Setting.Instance.Notification.TrafficPedestrianConnectionNotification, OnTrafficPedestrianConnectionNotificationToggle);
+
+        companyNoInputsNotificationBinding = AddBoolBindingAndTriggerBinding(nameof(Setting.Instance.Notification.CompanyNoInputsNotification), Setting.Instance.Notification.CompanyNoInputsNotification, OnCompanyNoInputsNotificationToggle);
+        companyNoCustomersNotificationBinding = AddBoolBindingAndTriggerBinding(nameof(Setting.Instance.Notification.CompanyNoCustomersNotification), Setting.Instance.Notification.CompanyNoCustomersNotification, OnCompanyNoCustomersNotificationToggle);
+
+        workProviderUneducatedNotificationBinding = AddBoolBindingAndTriggerBinding(nameof(Setting.Instance.Notification.WorkProviderUneducatedNotification), Setting.Instance.Notification.WorkProviderUneducatedNotification, OnWorkProviderUneducatedNotificationToggle);
+        workProviderEducatedNotificationBinding = AddBoolBindingAndTriggerBinding(nameof(Setting.Instance.Notification.WorkProviderEducatedNotification), Setting.Instance.Notification.WorkProviderEducatedNotification, OnWorkProviderEducatedNotificationToggle);
+
+        disasterWeatherDamageNotificationBinding = AddBoolBindingAndTriggerBinding(nameof(Setting.Instance.Notification.DisasterWeatherDamageNotification), Setting.Instance.Notification.DisasterWeatherDamageNotification, OnDisasterWeatherDamageNotificationToggle);
+        disasterWeatherDestroyedNotificationBinding = AddBoolBindingAndTriggerBinding(nameof(Setting.Instance.Notification.DisasterWeatherDestroyedNotification), Setting.Instance.Notification.DisasterWeatherDestroyedNotification, OnDisasterWeatherDestroyedNotificationToggle);
+        disasterWaterDamageNotificationBinding = AddBoolBindingAndTriggerBinding(nameof(Setting.Instance.Notification.DisasterWaterDamageNotification), Setting.Instance.Notification.DisasterWaterDamageNotification, OnDisasterWaterDamageNotificationToggle);
+        disasterWaterDestroyedNotificationBinding = AddBoolBindingAndTriggerBinding(nameof(Setting.Instance.Notification.DisasterWaterDestroyedNotification), Setting.Instance.Notification.DisasterWaterDestroyedNotification, OnDisasterWaterDestroyedNotificationToggle);
+        disasterDestroyedNotificationBinding = AddBoolBindingAndTriggerBinding(nameof(Setting.Instance.Notification.DisasterDestroyedNotification), Setting.Instance.Notification.DisasterDestroyedNotification, OnDisasterDestroyedNotificationToggle);
+
+        fireFireNotificationBinding = AddBoolBindingAndTriggerBinding(nameof(Setting.Instance.Notification.FireFireNotification), Setting.Instance.Notification.FireFireNotification, OnFireFireNotificationToggle);
+        fireBurnedDownNotificationBinding = AddBoolBindingAndTriggerBinding(nameof(Setting.Instance.Notification.FireBurnedDownNotification), Setting.Instance.Notification.FireBurnedDownNotification, OnFireBurnedDownNotificationToggle);
+
+        garbageGarbageNotificationBinding = AddBoolBindingAndTriggerBinding(nameof(Setting.Instance.Notification.GarbageGarbageNotification), Setting.Instance.Notification.GarbageGarbageNotification, OnGarbageGarbageNotificationToggle);
+        garbageFacilityFullNotificationBinding = AddBoolBindingAndTriggerBinding(nameof(Setting.Instance.Notification.GarbageFacilityFullNotification), Setting.Instance.Notification.GarbageFacilityFullNotification, OnGarbageFacilityFullNotificationToggle);
+
+        healthcareAmbulanceNotificationBinding = AddBoolBindingAndTriggerBinding(nameof(Setting.Instance.Notification.HealthcareAmbulanceNotification), Setting.Instance.Notification.HealthcareAmbulanceNotification, OnHealthcareAmbulanceNotificationToggle);
+        healthcareHearseNotificationBinding = AddBoolBindingAndTriggerBinding(nameof(Setting.Instance.Notification.HealthcareHearseNotification), Setting.Instance.Notification.HealthcareHearseNotification, OnHealthcareHearseNotificationToggle);
+        healthcareFacilityFullNotificationBinding = AddBoolBindingAndTriggerBinding(nameof(Setting.Instance.Notification.HealthcareFacilityFullNotification), Setting.Instance.Notification.HealthcareFacilityFullNotification, OnHealthcareFacilityFullNotificationToggle);
+
+        policeTrafficAccidentNotificationBinding = AddBoolBindingAndTriggerBinding(nameof(Setting.Instance.Notification.PoliceTrafficAccidentNotification), Setting.Instance.Notification.PoliceTrafficAccidentNotification, OnPoliceTrafficAccidentNotificationToggle);
+        policeCrimeSceneNotificationBinding = AddBoolBindingAndTriggerBinding(nameof(Setting.Instance.Notification.PoliceCrimeSceneNotification), Setting.Instance.Notification.PoliceCrimeSceneNotification, OnPoliceCrimeSceneNotificationToggle);
+
+        pollutionAirPollutionNotificationBinding = AddBoolBindingAndTriggerBinding(nameof(Setting.Instance.Notification.PollutionAirPollutionNotification), Setting.Instance.Notification.PollutionAirPollutionNotification, OnPollutionAirPollutionNotificationToggle);
+        pollutionNoisePollutionNotificationBinding = AddBoolBindingAndTriggerBinding(nameof(Setting.Instance.Notification.PollutionNoisePollutionNotification), Setting.Instance.Notification.PollutionNoisePollutionNotification, OnPollutionNoisePollutionNotificationToggle);
+        pollutionGroundPollutionNotificationBinding = AddBoolBindingAndTriggerBinding(nameof(Setting.Instance.Notification.PollutionGroundPollutionNotification), Setting.Instance.Notification.PollutionGroundPollutionNotification, OnPollutionGroundPollutionNotificationToggle);
+
+        resourceConsumerNoResourceNotificationBinding = AddBoolBindingAndTriggerBinding(nameof(Setting.Instance.Notification.ResourceConsumerNoResourceNotification), Setting.Instance.Notification.ResourceConsumerNoResourceNotification, OnResourceConsumerNoResourceNotificationToggle);
+
+        routePathfindNotificationBinding = AddBoolBindingAndTriggerBinding(nameof(Setting.Instance.Notification.RoutePathfindNotification), Setting.Instance.Notification.RoutePathfindNotification, OnRoutePathfindNotificationToggle);
+
+        transportLineVehicleNotificationBinding = AddBoolBindingAndTriggerBinding(nameof(Setting.Instance.Notification.TransportLineVehicleNotification), Setting.Instance.Notification.TransportLineVehicleNotification, OnTransportLineVehicleNotificationToggle);
     }
 
 
@@ -260,6 +330,159 @@ public partial class CityControllerUISystem : UISystemBaseExtension {
         trafficPedestrianConnectionNotificationBinding.Update(value);
         Setting.Instance.Notification.TrafficPedestrianConnectionNotification = value;
         notificationControllerSystem.EnableTrafficNotification(TrafficNotificationIcon.PedestrianConnectionNotification, value, true);
+    }
+    #endregion
+
+    #region OnCompanyNotificationToggle
+    private void OnCompanyNoInputsNotificationToggle(bool value) {
+        companyNoInputsNotificationBinding.Update(value);
+        Setting.Instance.Notification.CompanyNoInputsNotification = value;
+        notificationControllerSystem.EnableCompanyNotification(CompanyNotificationIcon.NoInputsNotification, value, true);
+    }
+    private void OnCompanyNoCustomersNotificationToggle(bool value) {
+        companyNoCustomersNotificationBinding.Update(value);
+        Setting.Instance.Notification.CompanyNoCustomersNotification = value;
+        notificationControllerSystem.EnableCompanyNotification(CompanyNotificationIcon.NoCustomersNotification, value, true);
+    }
+    #endregion
+
+    #region OnWorkProviderNotificationToggle
+    private void OnWorkProviderUneducatedNotificationToggle(bool value) {
+        workProviderUneducatedNotificationBinding.Update(value);
+        Setting.Instance.Notification.WorkProviderUneducatedNotification = value;
+        notificationControllerSystem.EnableWorkProviderNotification(WorkProviderNotificationIcon.UneducatedNotification, value, true);
+    }
+    private void OnWorkProviderEducatedNotificationToggle(bool value) {
+        workProviderEducatedNotificationBinding.Update(value);
+        Setting.Instance.Notification.WorkProviderEducatedNotification = value;
+        notificationControllerSystem.EnableWorkProviderNotification(WorkProviderNotificationIcon.EducatedNotification, value, true);
+    }
+    #endregion
+
+    #region OnDisasterNotificationToggle
+    private void OnDisasterWeatherDamageNotificationToggle(bool value) {
+        disasterWeatherDamageNotificationBinding.Update(value);
+        Setting.Instance.Notification.DisasterWeatherDamageNotification = value;
+        notificationControllerSystem.EnableDisasterNotification(DisasterNotificationIcon.WeatherDamageNotification, value, true);
+    }
+    private void OnDisasterWeatherDestroyedNotificationToggle(bool value) {
+        disasterWeatherDestroyedNotificationBinding.Update(value);
+        Setting.Instance.Notification.DisasterWeatherDestroyedNotification = value;
+        notificationControllerSystem.EnableDisasterNotification(DisasterNotificationIcon.WeatherDestroyedNotification, value, true);
+    }
+    private void OnDisasterWaterDamageNotificationToggle(bool value) {
+        disasterWaterDamageNotificationBinding.Update(value);
+        Setting.Instance.Notification.DisasterWaterDamageNotification = value;
+        notificationControllerSystem.EnableDisasterNotification(DisasterNotificationIcon.WaterDamageNotification, value, true);
+    }
+    private void OnDisasterWaterDestroyedNotificationToggle(bool value) {
+        disasterWaterDestroyedNotificationBinding.Update(value);
+        Setting.Instance.Notification.DisasterWaterDestroyedNotification = value;
+        notificationControllerSystem.EnableDisasterNotification(DisasterNotificationIcon.WaterDestroyedNotification, value, true);
+    }
+    private void OnDisasterDestroyedNotificationToggle(bool value) {
+        disasterDestroyedNotificationBinding.Update(value);
+        Setting.Instance.Notification.DisasterDestroyedNotification = value;
+        notificationControllerSystem.EnableDisasterNotification(DisasterNotificationIcon.DestroyedNotification, value, true);
+    }
+    #endregion
+
+    #region OnFireNotificationToggle
+    private void OnFireFireNotificationToggle(bool value) {
+        fireFireNotificationBinding.Update(value);
+        Setting.Instance.Notification.FireFireNotification = value;
+        notificationControllerSystem.EnableFireNotification(FireNotificationIcon.FireNotification, value, true);
+    }
+    private void OnFireBurnedDownNotificationToggle(bool value) {
+        fireBurnedDownNotificationBinding.Update(value);
+        Setting.Instance.Notification.FireBurnedDownNotification = value;
+        notificationControllerSystem.EnableFireNotification(FireNotificationIcon.BurnedDownNotification, value, true);
+    }
+    #endregion
+
+    #region OnGarbageNotificationToggle
+    private void OnGarbageGarbageNotificationToggle(bool value) {
+        garbageGarbageNotificationBinding.Update(value);
+        Setting.Instance.Notification.GarbageGarbageNotification = value;
+        notificationControllerSystem.EnableGarbageNotification(GarbageNotificationIcon.GarbageNotification, value, true);
+    }
+    private void OnGarbageFacilityFullNotificationToggle(bool value) {
+        garbageFacilityFullNotificationBinding.Update(value);
+        Setting.Instance.Notification.GarbageFacilityFullNotification = value;
+        notificationControllerSystem.EnableGarbageNotification(GarbageNotificationIcon.FacilityFullNotification, value, true);
+    }
+    #endregion
+
+    #region OnHealthcareNotificationToggle
+    private void OnHealthcareAmbulanceNotificationToggle(bool value) {
+        healthcareAmbulanceNotificationBinding.Update(value);
+        Setting.Instance.Notification.HealthcareAmbulanceNotification = value;
+        notificationControllerSystem.EnableHealthcareNotification(HealthcareNotificationIcon.AmbulanceNotification, value, true);
+    }
+    private void OnHealthcareHearseNotificationToggle(bool value) {
+        healthcareHearseNotificationBinding.Update(value);
+        Setting.Instance.Notification.HealthcareHearseNotification = value;
+        notificationControllerSystem.EnableHealthcareNotification(HealthcareNotificationIcon.HearseNotification, value, true);
+    }
+    private void OnHealthcareFacilityFullNotificationToggle(bool value) {
+        healthcareFacilityFullNotificationBinding.Update(value);
+        Setting.Instance.Notification.HealthcareFacilityFullNotification = value;
+        notificationControllerSystem.EnableHealthcareNotification(HealthcareNotificationIcon.FacilityFullNotification, value, true);
+    }
+    #endregion
+
+    #region OnPoliceNotificationToggle
+    private void OnPoliceTrafficAccidentNotificationToggle(bool value) {
+        policeTrafficAccidentNotificationBinding.Update(value);
+        Setting.Instance.Notification.PoliceTrafficAccidentNotification = value;
+        notificationControllerSystem.EnablePoliceNotification(PoliceNotificationIcon.TrafficAccidentNotification, value, true);
+    }
+    private void OnPoliceCrimeSceneNotificationToggle(bool value) {
+        policeCrimeSceneNotificationBinding.Update(value);
+        Setting.Instance.Notification.PoliceCrimeSceneNotification = value;
+        notificationControllerSystem.EnablePoliceNotification(PoliceNotificationIcon.CrimeSceneNotification, value, true);
+    }
+    #endregion
+
+    #region OnPollutionNotificationToggle
+    private void OnPollutionAirPollutionNotificationToggle(bool value) {
+        pollutionAirPollutionNotificationBinding.Update(value);
+        Setting.Instance.Notification.PollutionAirPollutionNotification = value;
+        notificationControllerSystem.EnablePollutionNotification(PollutionNotificationIcon.AirPollutionNotification, value, true);
+    }
+    private void OnPollutionNoisePollutionNotificationToggle(bool value) {
+        pollutionNoisePollutionNotificationBinding.Update(value);
+        Setting.Instance.Notification.PollutionNoisePollutionNotification = value;
+        notificationControllerSystem.EnablePollutionNotification(PollutionNotificationIcon.NoisePollutionNotification, value, true);
+    }
+    private void OnPollutionGroundPollutionNotificationToggle(bool value) {
+        pollutionGroundPollutionNotificationBinding.Update(value);
+        Setting.Instance.Notification.PollutionGroundPollutionNotification = value;
+        notificationControllerSystem.EnablePollutionNotification(PollutionNotificationIcon.GroundPollutionNotification, value, true);
+    }
+    #endregion
+
+    #region OnResourceConsumerNotificationToggle
+    private void OnResourceConsumerNoResourceNotificationToggle(bool value) {
+        resourceConsumerNoResourceNotificationBinding.Update(value);
+        Setting.Instance.Notification.ResourceConsumerNoResourceNotification = value;
+        notificationControllerSystem.EnableResourceConsumerNotification(ResourceConsumerNotificationIcon.NoResourceNotification, value, true);
+    }
+    #endregion
+
+    #region OnRouteNotificationToggle
+    private void OnRoutePathfindNotificationToggle(bool value) {
+        routePathfindNotificationBinding.Update(value);
+        Setting.Instance.Notification.RoutePathfindNotification = value;
+        notificationControllerSystem.EnableRouteNotification(RouteNotificationIcon.PathfindNotification, value, true);
+    }
+    #endregion
+
+    #region OnTransportLineNotificationToggle
+    private void OnTransportLineVehicleNotificationToggle(bool value) {
+        transportLineVehicleNotificationBinding.Update(value);
+        Setting.Instance.Notification.TransportLineVehicleNotification = value;
+        notificationControllerSystem.EnableTransportLineNotification(TransportLineNotificationIcon.VehicleNotification, value, true);
     }
     #endregion
 

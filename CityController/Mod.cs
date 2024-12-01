@@ -10,7 +10,7 @@ namespace CityController;
 
 public class Mod : ModBase, IMod {
     public override bool BetaVersion => true;
-    public override DateTime VersionDate => new(2024, 11, 21);
+    public override DateTime VersionDate => new(2024, 12, 01);
 
     protected override void CreateSetting() {
         Setting = Settings.Setting.Instance = new Setting(this);
